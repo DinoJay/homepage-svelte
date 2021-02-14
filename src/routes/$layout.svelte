@@ -4,8 +4,6 @@
 </script>
 
 <main class=" h-full mx-10 flex flex-col">
-  <div class="pin m-auto bg-red-500 rounded-full w-6 h-6" />
-  <Nav />
   <slot />
 </main>
 
