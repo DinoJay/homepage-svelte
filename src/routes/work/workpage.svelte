@@ -6,7 +6,7 @@
   const rowHeight = 20;
   let prepData = [];
   let offsetWidth = 0;
-  const divisor = 10;
+  const divisor = 8;
   $: {
     prepData = data.map((d) => ({
       ...d,
@@ -27,7 +27,7 @@
   <div
     class="gallery"
     style="grid-template-columns: repeat({Math.round(
-      Math.floor(offsetWidth / divisor / 2.4)
+      Math.floor(offsetWidth / divisor / 2.8)
     )}, {divisor}px); ">
     {#each prepData as d (d.id)}
       <div

@@ -1,10 +1,61 @@
 <script>
+  import { onMount } from 'svelte';
+  let title = null;
+  let rXP = 0;
+  let rYP = 0;
+  onMount(() => {
+    title.addEventListener('mousemove', (e) => {
+      rXP = e.pageX - title.offsetLeft - title.offsetWidth / 2;
+      rYP = e.pageY - title.offsetTop - title.offsetHeight / 2;
+      // console.log({ rXP, rYP });
+    });
+
+    // $('h1').mousemove(function (e) {
+    //   var rXP = e.pageX - this.offsetLeft - $(this).width() / 2;
+    //   var rYP = e.pageY - this.offsetTop - $(this).height() / 2;
+    // $('h1').css(
+    //   'text-shadow',
+    //   +rYP / 10 +
+    //     'px ' +
+    //     rXP / 80 +
+    //     'px rgba(227,6,19,.8), ' +
+    //     rYP / 8 +
+    //     'px ' +
+    //     rXP / 60 +
+    //     'px rgba(255,237,0,1), ' +
+    //     rXP / 70 +
+    //     'px ' +
+    //     rYP / 12 +
+    //     'px rgba(0,159,227,.7)'
+    // );
+    // });
+  });
 </script>
 
 <div class="flex-grow flex items-center">
   <div class="max-w-2xl mr-12 ">
-    <h1 class="text-7xl mb-4 ">
-      <span class="bg-black text-white px-2 font-mono">Jan Maushagen</span>
+    <h1 bind:this={title} class="text-7xl mb-4 relative">
+      <span class=" opacity-0  px-2 font-mono font-bold ">Jan Maushagen</span>
+      <span
+        class=" text-red-500 px-2 font-mono font-bold layer-2 left-0"
+        style="transform:translate3d({rXP / 7}px, {rYP / 30}px,0)"
+        >Jan Maushagen</span>
+      <span
+        class=" text-green-500 px-2 font-mono font-bold layer-2 left-0"
+        style="transform:translate3d({rXP / 10}px, {rYP / 40}px,0)"
+        >Jan Maushagen</span>
+      <span
+        class="text-blue-500 px-2 font-mono font-bold layer-3 left-0"
+        style="transform:translate3d({rXP / 8}px, {rYP / 34}px,0)"
+        >Jan Maushagen</span>
+      <!-- <span
+        class="text-red-500 px-2 font-mono font-bold layer-3 left-0"
+        style="transform:translate3d({rXP / 8}px, {rYP / 20}px,0)"
+        >Jan Maushagen</span> -->
+      <!-- <span
+        class="text-yellow-300 px-2 font-mono font-bold layer-3 left-0"
+        style="transform:translate3d({rXP / 8}px, {rYP / 20}px,0)"
+        >Jan Maushagen</span> -->
     </h1>
     <p class="text-gray-700">
       <span class="line-through">PhD student</span>, orginally from Germany,
@@ -15,20 +66,20 @@
     </p>
   </div>
   <div class="gallery flex-grow">
-    <div class="box w-full h-full firstPic bg-cover bg-center">
+    <div class="w-full h-full firstPic bg-cover bg-center">
       <h2 class="">
         <span class="bg-black text-white text-xl px-2 py-1 uppercase font-mono"
           ><a href="/projects">#projects</a></span>
       </h2>
     </div>
-    <div class="box secPic bg-center bg-cover w-full h-full ">
+    <div class="secPic bg-center bg-cover w-full h-full ">
       <h2 class="">
         <span class="bg-black text-white text-xl px-2 py-1 uppercase font-mono"
           >#mixtapes</span>
       </h2>
     </div>
     <div
-      class="box relative object-cover bg-cover bg-center thirdPic w-full h-full ">
+      class="relative object-cover bg-cover bg-center thirdPic w-full h-full ">
       <h2 class="absolute bottom-0">
         <span class="bg-black text-white text-xl px-2 py-1 uppercase font-mono"
           >#projects/</span>
@@ -37,11 +88,11 @@
         </span>
       </h2>
     </div>
-    <div class="box object-cover bg-center bg-cover fourthPic w-full h-full ">
+    <div class="object-cover bg-center bg-cover fourthPic w-full h-full ">
       <span class="bg-black text-white text-xl px-2 py-1 uppercase font-mono"
         ><a href="/work">#work</a></span>
     </div>
-    <div class="box object-cover fifthPic bg-cover bg-center w-full h-full ">
+    <div class="object-cover fifthPic bg-cover bg-center w-full h-full ">
       <span class="bg-black text-white text-xl px-2 py-1 uppercase font-mono"
         ><a href="/work">#project/vinyl</a></span>
     </div>
@@ -49,6 +100,26 @@
 </div>
 
 <style>
+  /* .layer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  } */
+  .layer-1 {
+    opacity: 0.6;
+    /* position: absolute; */
+    /* transform: translateZ(-4px); */
+  }
+  .layer-2 {
+    position: absolute;
+    /* transform: translate3d(3px, 3px, 5px); */
+    opacity: 0.6;
+  }
+  .layer-3 {
+    position: absolute;
+    transform: translate3d(6px, 6px, 10px);
+    opacity: 0.6;
+  }
   .box {
     /* box-shadow: 7px 7px 0px #404040; */
     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
