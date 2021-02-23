@@ -1,13 +1,17 @@
 <script>
   import { onMount } from 'svelte';
   let title = null;
-  let rXP = 0;
-  let rYP = 0;
+  let rXP = 170;
+  let rYP = 319;
   onMount(() => {
-    title.addEventListener('mousemove', (e) => {
-      rXP = e.pageX - title.offsetLeft - title.offsetWidth / 2;
-      rYP = e.pageY - title.offsetTop - title.offsetHeight / 2;
-      // console.log({ rXP, rYP });
+    document.addEventListener('mousemove', (e) => {
+      const offX = title ? title.offsetLeft : 0;
+      const offY = title ? title.offsetTop : 0;
+      const offsetWidth = title ? title.offsetWidth : 0;
+      const offsetHeight = title ? title.offsetHeight : 0;
+      rXP = Math.max(Math.min(e.pageX - offX - offsetWidth / 2, 170), -170);
+      rYP = e.pageY - offY - offsetHeight / 2;
+      console.log({ rXP, rYP });
     });
 
     // $('h1').mousemove(function (e) {
@@ -37,16 +41,22 @@
     <h1 bind:this={title} class="text-7xl mb-4 relative">
       <span class=" opacity-0  px-2 font-mono font-bold ">Jan Maushagen</span>
       <span
-        class=" text-red-500 px-2 font-mono font-bold layer-2 left-0"
-        style="transform:translate3d({rXP / 7}px, {rYP / 30}px,0)"
+        class=" absolute left-0 top-0 layer-1 text-red-500 px-2 font-mono font-bold transition-all"
+        style="transform:translate3d({rXP / 7}px, {rYP / 20}px,0)"
         >Jan Maushagen</span>
       <span
-        class=" text-green-500 px-2 font-mono font-bold layer-2 left-0"
-        style="transform:translate3d({rXP / 10}px, {rYP / 40}px,0)"
+        class=" absolute left-0 top-0 layer-1 text-green-500 px-2 font-mono font-bold transition-all"
+        style="transform:translate3d({rXP / 8}px, {rYP / 30}px,0)"
         >Jan Maushagen</span>
       <span
-        class="text-blue-500 px-2 font-mono font-bold layer-3 left-0"
-        style="transform:translate3d({rXP / 8}px, {rYP / 34}px,0)"
+        class="absolute left-0 top-0 layer-1 text-yellow-300 px-2 font-mono font-bold transition-all"
+        style="transform:translate3d({rXP / 10}px, {rYP / 54}px,0)"
+        >Jan Maushagen</span>
+      <span
+        class="absolute left-0 top-0 layer-1 text-blue-500 px-2 font-mono font-bold transition-all"
+        style="transform:translate3d({rXP / 8}px, {rYP / 44}px,0)"
+        >Jan Maushagen</span>
+      <span class="hidden absolute text-black left-0 px-2 font-mono font-bold "
         >Jan Maushagen</span>
       <!-- <span
         class="text-red-500 px-2 font-mono font-bold layer-3 left-0"
@@ -107,17 +117,11 @@
   } */
   .layer-1 {
     opacity: 0.6;
-    /* position: absolute; */
-    /* transform: translateZ(-4px); */
   }
   .layer-2 {
-    position: absolute;
-    /* transform: translate3d(3px, 3px, 5px); */
     opacity: 0.6;
   }
   .layer-3 {
-    position: absolute;
-    transform: translate3d(6px, 6px, 10px);
     opacity: 0.6;
   }
   .box {
