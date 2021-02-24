@@ -1,52 +1,27 @@
 <script>
   import { onMount } from 'svelte';
   import Pic from '$components/Pic.svelte';
+  import Title from '$components/Title.svelte';
   let title = null;
   let rXP = 170;
   let rYP = 319;
-  onMount(() => {
-    document.addEventListener('mousemove', (e) => {
-      const offX = title ? title.offsetLeft : 0;
-      const offY = title ? title.offsetTop : 0;
-      const offsetWidth = title ? title.offsetWidth : 0;
-      const offsetHeight = title ? title.offsetHeight : 0;
-      rXP = Math.max(Math.min(e.pageX - offX - offsetWidth / 2, 170), -170);
-      rYP = e.pageY - offY - offsetHeight / 2;
-      console.log({ rXP, rYP });
-    });
-  });
+  // onMount(() => {
+  //   document.addEventListener('mousemove', (e) => {
+  //     const offX = title ? title.offsetLeft : 0;
+  //     const offY = title ? title.offsetTop : 0;
+  //     const offsetWidth = title ? title.offsetWidth : 0;
+  //     const offsetHeight = title ? title.offsetHeight : 0;
+  //     rXP = Math.max(Math.min(e.pageX - offX - offsetWidth / 2, 170), -170);
+  //     rYP = e.pageY - offY - offsetHeight / 2;
+  //     console.log({ rXP, rYP });
+  //   });
+  // });
 </script>
 
 <div class="flex-grow flex items-center">
   <div class="max-w-2xl mr-12 ">
-    <h1 bind:this={title} class="text-7xl mb-4 relative">
-      <span class=" opacity-0  px-2 font-mono font-bold ">Jan Maushagen</span>
-      <span
-        class=" absolute left-0 top-0 layer-1 text-red-500 px-2 font-mono font-bold transition-all"
-        style="transform:translate3d({rXP / 7}px, {rYP / 20}px,0)"
-        >Jan Maushagen</span>
-      <span
-        class=" absolute left-0 top-0 layer-1 text-green-500 px-2 font-mono font-bold transition-all"
-        style="transform:translate3d({rXP / 8}px, {rYP / 30}px,0)"
-        >Jan Maushagen</span>
-      <span
-        class="absolute left-0 top-0 layer-1 text-yellow-300 px-2 font-mono font-bold transition-all"
-        style="transform:translate3d({rXP / 10}px, {rYP / 54}px,0)"
-        >Jan Maushagen</span>
-      <span
-        class="absolute left-0 top-0 layer-1 text-blue-500 px-2 font-mono font-bold transition-all"
-        style="transform:translate3d({rXP / 8}px, {rYP / 44}px,0)"
-        >Jan Maushagen</span>
-      <span class="hidden absolute text-black left-0 px-2 font-mono font-bold "
-        >Jan Maushagen</span>
-      <!-- <span
-        class="text-red-500 px-2 font-mono font-bold layer-3 left-0"
-        style="transform:translate3d({rXP / 8}px, {rYP / 20}px,0)"
-        >Jan Maushagen</span> -->
-      <!-- <span
-        class="text-yellow-300 px-2 font-mono font-bold layer-3 left-0"
-        style="transform:translate3d({rXP / 8}px, {rYP / 20}px,0)"
-        >Jan Maushagen</span> -->
+    <h1 class="text-7xl mb-4 relative">
+      <Title>Jan Maushagen</Title>
     </h1>
     <p class="text-gray-700">
       <span class="line-through">PhD student</span>, orginally from Germany,
@@ -57,42 +32,70 @@
     </p>
   </div>
   <div class="gallery flex-grow">
-    <Pic
-      src="/whiteboard.jpg"
-      className="w-full h-full firstPic bg-cover bg-center">
-      <h2 class="">
-        <span class="bg-black text-white text-xl px-2 py-1 uppercase font-mono"
-          ><a href="/projects">#projects</a></span>
-      </h2>
-    </Pic>
-    <div class="secPic bg-center bg-cover w-full h-full ">
-      <h2 class="">
-        <span class="bg-black text-white text-xl px-2 py-1 uppercase font-mono"
-          >#mixtapes</span>
-      </h2>
+    <div class="firstPic">
+      <Pic src="/whiteboard.jpg" className="w-full h-full bg-cover bg-center">
+        <h2 class="">
+          <span
+            class="bg-black text-white text-xl px-2 py-1 uppercase font-mono"
+            ><a href="/projects">#projects</a></span>
+        </h2>
+      </Pic>
     </div>
-    <div
-      class="relative object-cover bg-cover bg-center thirdPic w-full h-full ">
-      <h2 class="absolute bottom-0">
+    <div class="secPic">
+      <Pic src="/mixer.jpg" className="bg-center bg-cover w-full h-full ">
+        <h2 class="">
+          <span
+            class="bg-black text-white text-xl px-2 py-1 uppercase font-mono"
+            >#mixtapes</span>
+        </h2>
+      </Pic>
+    </div>
+    <div class="thirdPic">
+      <Pic
+        src="/tickle.jpg"
+        className="cover bg-cover bg-center w-full h-full ">
+        <h2 class="absolute bottom-0">
+          <span
+            class="bg-black text-white text-xl px-2 py-1 uppercase font-mono"
+            >#projects/</span>
+          <span
+            class="bg-black text-white text-xl px-2 py-1 uppercase font-mono">
+            tickle
+          </span>
+        </h2>
+      </Pic>
+    </div>
+    <div class="fourthPic">
+      <Pic src="me_blurred.jpg" className="bg-center bg-cover w-full h-full ">
+        <h2>
+          <span
+            class="bg-black text-white text-xl px-2 py-1 uppercase font-mono"
+            ><a href="/work">#work</a></span>
+        </h2>
+      </Pic>
+    </div>
+    <div class="fifthPic">
+      <Pic src="/holger.jpg" className="bg-cover bg-center w-full h-full ">
         <span class="bg-black text-white text-xl px-2 py-1 uppercase font-mono"
-          >#projects/</span>
-        <span class="bg-black text-white text-xl px-2 py-1 uppercase font-mono">
-          tickle
-        </span>
-      </h2>
-    </div>
-    <div class="object-cover bg-center bg-cover fourthPic w-full h-full ">
-      <span class="bg-black text-white text-xl px-2 py-1 uppercase font-mono"
-        ><a href="/work">#work</a></span>
-    </div>
-    <div class="object-cover fifthPic bg-cover bg-center w-full h-full ">
-      <span class="bg-black text-white text-xl px-2 py-1 uppercase font-mono"
-        ><a href="/work">#project/vinyl</a></span>
+          ><a href="/work">#project/vinyl</a></span>
+      </Pic>
     </div>
   </div>
 </div>
 
 <style>
+  .first {
+    transform: translate(0%, 0%);
+    color: #0091e5;
+  }
+  .second {
+    transform: translate(1%, 0%);
+    color: #e42149;
+  }
+  .third {
+    transform: translate(0.3%, 0%);
+    color: #fff146;
+  }
   /* .layer {
     width: 100%;
     height: 100%;
@@ -123,27 +126,23 @@
     row-gap: 20px;
   }
   .firstPic {
-    background-image: url(/whiteboard.jpg);
+    /* background-image: url(/whiteboard.jpg); */
     grid-column: span 9;
     grid-row: 1 / span 10;
   }
   .secPic {
-    background-image: url(/mixer.jpg);
     grid-column: span 7;
     grid-row: 2 / span 6;
   }
   .thirdPic {
-    background-image: url(/tickle.jpg);
     grid-column: span 4;
     grid-row: 11 / span 6;
   }
   .fourthPic {
-    background-image: url(/me_blurred.jpg);
     grid-column: span 5;
     grid-row: 11 / span 7;
   }
   .fifthPic {
-    background-image: url(/holger.jpg);
     grid-column: span 7;
     grid-row: 8 / span 8;
   }

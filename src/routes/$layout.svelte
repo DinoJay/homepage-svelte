@@ -3,7 +3,7 @@
   import Nav from '$components/Nav.svelte';
 </script>
 
-<main class=" h-full mx-10 flex flex-col">
+<main class=" h-full mx-10 my-3 flex flex-col justify-center">
   <slot />
 </main>
 
@@ -17,10 +17,10 @@
   main {
     /* overflow: auto;
     /* @apply p-3; */
-    /* max-width: 62ch;
-    max-height: 74ch;
+    max-width: 130ch;
+    /* max-height: 74ch;
     border-color: #888853;
-    box-shadow: 5px 5px 0px #c1c1ab;
+    box-shadow: 5px 5px 0px #c1c1ab; */
     /* border-radius: 255px 15px 225px 15px/15px 225px 15px 255px; */
     /* background: #f6f1e9; */
     /* // hsla(67, 95%, 95%, 0.7); */

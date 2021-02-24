@@ -7,6 +7,8 @@
   //   let el = document.getElementById('tilt');
 
   let el = null;
+  let transform =
+    'perspective(1000px) scale(1) rotateX( -7.52632deg) rotateY( 8.14978deg);';
   onMount(() => {
     if (!el) return;
     /* Get the height and width of the element */
@@ -44,39 +46,40 @@
       const xRotation = -20 * ((yVal - height / 2) / height);
 
       /* Generate string for CSS transform property */
-      const string =
-        'perspective(500px) scale(1.1) rotateX(' +
+      transform =
+        'perspective(1000px) scale(1) rotateX(' +
         xRotation +
         'deg) rotateY(' +
         yRotation +
         'deg)';
 
       /* Apply the calculated transformation */
-      el.style.transform = string;
+      // el.style.transform = transform;
     }
 
     /* Add listener for mouseout event, remove the rotation */
-    el.addEventListener('mouseout', function () {
-      el.style.transform = 'perspective(500px) scale(1) rotateX(0) rotateY(0)';
-    });
+    // el.addEventListener('mouseout', function () {
+    //   el.style.transform = 'perspective(500px) scale(1) rotateX(0) rotateY(0)';
+    // });
 
-    /* Add listener for mousedown event, to simulate click */
-    el.addEventListener('mousedown', function () {
-      el.style.transform =
-        'perspective(500px) scale(0.9) rotateX(0) rotateY(0)';
-    });
+    // /* Add listener for mousedown event, to simulate click */
+    // el.addEventListener('mousedown', function () {
+    //   el.style.transform =
+    //     'perspective(500px) scale(0.9) rotateX(0) rotateY(0)';
+    // });
 
-    /* Add listener for mouseup, simulate release of mouse click */
-    el.addEventListener('mouseup', function () {
-      el.style.transform =
-        'perspective(500px) scale(1.1) rotateX(0) rotateY(0)';
-    });
+    // /* Add listener for mouseup, simulate release of mouse click */
+    // el.addEventListener('mouseup', function () {
+    //   el.style.transform =
+    //     'perspective(500px) scale(1.1) rotateX(0) rotateY(0)';
+    // });
   });
 </script>
 
 <div
-  class={className}
   bind:this={el}
-  style="background-image:url({src});{style}">
-  <slot />
+  class="relative transition transition duration-500 ease-in-out w-full h-full"
+  style="transform:{transform}">
+  <img {src} alt="src" class="object-cover object-center w-full h-full  " />
+  <div class="absolute bottom-0"><slot /></div>
 </div>

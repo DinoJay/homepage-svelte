@@ -2,7 +2,8 @@ import * as layout from "/_app/routes/$layout.svelte.js";
 
 const components = [
 	() => import("/_app/routes/index.svelte.js"),
-	() => import("/_app/routes/projects.svelte.js"),
+	() => import("/_app/routes/projects/index.svelte.js"),
+	() => import("/_app/routes/projects/ProjectPage.svelte.js"),
 	() => import("/_app/routes/work/index.svelte.js"),
 	() => import("/_app/routes/work/workpage.svelte.js")
 ];
@@ -19,24 +20,31 @@ export const pages = [
 	},
 
 	{
-		// projects.svelte
+		// projects/index.svelte
 		pattern: /^\/projects\/?$/,
 		params: empty,
 		parts: [components[1]]
 	},
 
 	{
+		// projects/ProjectPage.svelte
+		pattern: /^\/projects\/ProjectPage\/?$/,
+		params: empty,
+		parts: [components[2]]
+	},
+
+	{
 		// work/index.svelte
 		pattern: /^\/work\/?$/,
 		params: empty,
-		parts: [components[2]]
+		parts: [components[3]]
 	},
 
 	{
 		// work/workpage.svelte
 		pattern: /^\/work\/workpage\/?$/,
 		params: empty,
-		parts: [components[3]]
+		parts: [components[4]]
 	}
 ];
 
