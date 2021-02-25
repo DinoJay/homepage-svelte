@@ -6,13 +6,14 @@
   const rowHeight = 20;
   let prepData = [];
   let offsetWidth = 0;
-  const divisor = 8;
+  const divisor = 10;
   $: {
     prepData = data.map((d) => ({
       ...d,
       cols: Math.max(Math.round(d.width_t / divisor), 1),
       rows: Math.max(Math.round(d.height_t / divisor), 1),
     }));
+    console.log('offsetWidth', offsetWidth);
   }
   let id = null;
   const getStyles = (d) => {
@@ -22,12 +23,12 @@
   };
 </script>
 
-<div class="w-full" bind:offsetWidth>
-  <h1 class="text-7xl mb-3"><Title>Projects</Title></h1>
+<div class="w-full flex items-center" bind:offsetWidth>
+  <h1 class="text-7xl mb-3 mr-6"><Title>Projects</Title></h1>
   <div
-    class="gallery"
+    class="gallery flex-grow "
     style="grid-template-columns: repeat({Math.round(
-      Math.floor(offsetWidth / divisor / 2.8)
+      Math.floor(offsetWidth / divisor / 3.8)
     )}, {divisor}px); ">
     {#each prepData as d (d.id)}
       <div
@@ -40,9 +41,10 @@
       </div>
     {/each}
   </div>
-  <a href="/" class="text-2xl uppercase mb-3 flex items-center"
-    ><ArrowBigLeft /> <span>Home</span></a>
 </div>
+<a href="/" class="text-2xl uppercase mb-3 flex items-center">
+  <span class="text-5xl"><Title>Home</Title></span></a
+>
 
 <style>
   .gallery {

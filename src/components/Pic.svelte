@@ -78,8 +78,11 @@
 
 <div
   bind:this={el}
-  class="relative transition transition duration-500 ease-in-out w-full h-full"
+  class="shade relative transition transition duration-300 ease-in-out w-full h-full"
   style="transform:{transform}">
   <img {src} alt="src" class="object-cover object-center w-full h-full  " />
   <div class="absolute bottom-0"><slot /></div>
 </div>
+
+<style>
+</style>

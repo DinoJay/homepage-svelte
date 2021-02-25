@@ -32,7 +32,7 @@
     </p>
   </div>
   <div class="gallery flex-grow">
-    <div class="firstPic">
+    <div class="firstPic ">
       <Pic src="/whiteboard.jpg" className="w-full h-full bg-cover bg-center">
         <h2 class="">
           <span
@@ -104,12 +104,34 @@
   .layer-1 {
     opacity: 0.6;
   }
-  .layer-2 {
-    opacity: 0.6;
+
+  /* .shadow {
+    background: black;
+    height: 100px;
+    width: 100px;
+    position: relative;
+  } */
+  shadow:after,
+  shadow:before {
+    content: '';
+    background: grey;
+    position: absolute;
   }
-  .layer-3 {
-    opacity: 0.6;
+  shadow:after {
+    width: 100%;
+    height: 20px;
+    left: 10px;
+    bottom: 0;
+    transform: translatey(100%) skewx(45deg);
   }
+  shadow:before {
+    width: 20px;
+    height: 100%;
+    right: 0;
+    transform: translatex(100%) skewy(45deg);
+    top: 10px;
+  }
+
   .box {
     /* box-shadow: 7px 7px 0px #404040; */
     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
