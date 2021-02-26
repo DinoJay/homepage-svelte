@@ -79,7 +79,7 @@
 <div
   bind:this={el}
   class="shade relative transition transition duration-300 ease-in-out w-full h-full"
-  style="transform:{transform}">
+  style="transform:{transform}; box-shadow: 10px 10px 0px #ccd3da">
   <img {src} alt="src" class="object-cover object-center w-full h-full  " />
   <div class="absolute bottom-0"><slot /></div>
 </div>
